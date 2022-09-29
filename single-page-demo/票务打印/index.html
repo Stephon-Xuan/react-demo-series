@@ -1,0 +1,70 @@
+<!-- https://blog.csdn.net/baohuan_love/article/details/49744363 -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script
+      src="https://unpkg.com/react@17/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/react-router-dom@5.0.0/umd/react-router-dom.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const Link = ReactRouterDOM.Link;
+      const Route = ReactRouterDOM.Route;
+      const { useEffect, useState, useCallback, useMemo } = React;
+      const App = () => (
+        <ReactRouterDOM.HashRouter>
+          <Route path="/" exact component={Home} />
+        </ReactRouterDOM.HashRouter>
+      );
+
+      const ImgTemplate = () => {
+        return (
+          <div>
+            <img
+              src={
+                "https://img.zcool.cn/community/01815c5c2dc4b9a80121df90b96800.jpg@1280w_1l_2o_100sh.jpg"
+              }
+              width={200}
+              height={100}
+            />
+          </div>
+        );
+      };
+
+      const Home = () => {
+        let list = [];
+        for (let i = 0; i <= 4000; i++) {
+          list.push(i);
+        }
+        useEffect(() => {
+          window.print();
+        }, []);
+
+        return (
+          <div>
+            {list.map((item, index) => {
+              return (
+                <div key={index}>
+                  <ImgTemplate />
+                </div>
+              );
+            })}
+          </div>
+        );
+      };
+
+      ReactDOM.render(<App />, document.querySelector("#root"));
+    </script>
+  </body>
+</html>
